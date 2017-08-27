@@ -1,0 +1,19 @@
+<md-tab-group>
+  <ng-container *ngFor="let d of data;let i = index">
+  <md-tab [label]="tabLabels[i]">
+
+    <md-input-container *ngIf="tabLabels[i]==='Search'">
+      <input mdInput placeholder="Search Tweet" #searchbox (keyup)="search(searchbox.value)">
+    </md-input-container>
+
+    <div class="no-data-container" [hidden]="d.length > 0">
+      <div>データなし</div>
+    </div>
+
+    <ng-container *ngIf="d.length > 0">
+      <ng2-smart-table [settings]="settings" [source]="d"></ng2-smart-table>
+    </ng-container>
+
+  </md-tab>
+  </ng-container>
+</md-tab-group>
